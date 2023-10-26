@@ -1,10 +1,14 @@
-import logo from './logo.svg';
+//import logo from './logo.svg';
 import './App.css';
+import PickingJarContainer from './containers/PickingJarContainer';
 
 function App() {
+
+
+
   return (
-    <div className="App">
-      <header className="App-header">
+    <div className="App" style={{backgroundColor:"beige"}}>
+      {/*<header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
@@ -17,7 +21,13 @@ function App() {
         >
           Learn React
         </a>
-      </header>
+  </header> */}
+      <div id='jar-row' style={{flexWrap:'wrap', display:'flex', flexDirection:'row', justifyContent: 'space-evenly', alignItems: 'top', margin:'20px'}}>
+        <PickingJarContainer key='1'/>
+        <PickingJarContainer key='2'/>
+        <PickingJarContainer key='3'/>
+
+      </div>
     </div>
   );
 }
