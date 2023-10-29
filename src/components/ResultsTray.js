@@ -1,28 +1,31 @@
-import React, { useState, useEffect, useRef }from 'react';
-
+import React from 'react';
 
 
 function ResultsTray({contents, containerWidth}){
 
-    const [trayWidth, setTrayWidth] = useState(null);
-    const elementRef = useRef(null);
+    //const [trayWidth, setTrayWidth] = useState(null);
+    //const elementRef = useRef(null);
 
+    /*
     function getNumFromStyle(styleString) {
         const suffix = styleString.slice(-2);
         if( suffix === "px") return styleString.slice(0,-2);
         if( suffix.slice(-1) === '%') return styleString.slice(0, -1);
         return "Error";
     }
+    */
 
     // On first render record size of tile
     // Did this because rendering the tile at 30% of 
     //      flex width made the component grow after wrapping
+    /*
     useEffect(()=>{
         const currentElement = elementRef.current;
         const width = window.getComputedStyle(currentElement).getPropertyValue('width');
         const widthNum = getNumFromStyle(width);
         setTrayWidth(widthNum);
     }, []);
+    */
 
     const makeCircleSvgWithColor = (color, centerText, isMostRecent) => {
         // Settings for tiles
@@ -80,7 +83,7 @@ function ResultsTray({contents, containerWidth}){
     
 
     return (
-        <div style={{/*border:"dashed green 2px",*/ maxWidth:containerWidth?`${containerWidth}px`:'none'}}ref={elementRef}>
+        <div style={{/*border:"dashed green 2px",*/ maxWidth:containerWidth?`${containerWidth}px`:'none'}}>
             {/*<p>{JSON.stringify(contents)}</p>*/}
             <div style={firstElementContainerStyle}>
                 {makeCircleSvgWithColor(contents[0], contents.length-1, contents.length!==0)}
