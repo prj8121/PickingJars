@@ -1,10 +1,11 @@
-import React from 'react';
-
+import React, { useEffect, useState } from 'react';
+import Counter from './Counter';
 
 function ResultsTray({contents, containerWidth}){
 
     //const [trayWidth, setTrayWidth] = useState(null);
     //const elementRef = useRef(null);
+    const [counterData, setCounterData] = useState(null);
 
     /*
     function getNumFromStyle(styleString) {
@@ -15,17 +16,40 @@ function ResultsTray({contents, containerWidth}){
     }
     */
 
-    // On first render record size of tile
-    // Did this because rendering the tile at 30% of 
-    //      flex width made the component grow after wrapping
-    /*
     useEffect(()=>{
-        const currentElement = elementRef.current;
-        const width = window.getComputedStyle(currentElement).getPropertyValue('width');
-        const widthNum = getNumFromStyle(width);
-        setTrayWidth(widthNum);
-    }, []);
-    */
+        const latestColor = contents.length>0?contents[0]:null;
+        console.log(counterData)
+        console.log(`latestColor:${latestColor}`)
+        console.log(`contentss:${contents}`)
+        if (latestColor !== null){
+            console.log("entered latestColor!==null")
+            const index = counterData.colors.indexOf(latestColor);
+            if (index === -1){
+                const newColors = [...counterData.colors, latestColor];
+                const newCounts = [...counterData.counts, 1];
+                setCounterData({
+                    colors:newColors,
+                    counts:newCounts,
+                })
+            } else {
+                //This is just terrible
+                const newCounts = counterData.counts.map((count, i) => {return(count + (i === index?1:0))});
+                setCounterData({
+                    colors:counterData.colors,
+                    counts:newCounts,
+                })
+            }
+        } else {
+            setCounterData(
+                {
+                'colors':[],
+                "counts":[]
+                }
+            )
+        }
+        
+    }, [contents]);
+
 
     const makeCircleSvgWithColor = (color, centerText, isMostRecent) => {
         // Settings for tiles
@@ -70,9 +94,6 @@ function ResultsTray({contents, containerWidth}){
         maxWidth: containerWidth?`${containerWidth}px`:'none',
     }
 
-    const firstElementContainerStyle = {
-        justifyContent: 'center',
-    }
     const rowContainerStyle = {
         justifyContent: 'center',
         //border: 'dotted red 2px',
@@ -83,16 +104,25 @@ function ResultsTray({contents, containerWidth}){
     
 
     return (
-        <div style={{/*border:"dashed green 2px",*/ maxWidth:containerWidth?`${containerWidth}px`:'none'}}>
-            {/*<p>{JSON.stringify(contents)}</p>*/}
-            <div style={firstElementContainerStyle}>
-                {makeCircleSvgWithColor(contents[0], contents.length-1, contents.length!==0)}
+        <div style={{display:'flex', flexDirection:'column', /*textAlign:'center',*/ /*alignItems:'center',*/ maxWidth:containerWidth?`${containerWidth}px`:'none'}}>
+            <div style={{display:'flex'}}>
+                <div style={{alignSelf:'start', flex:1, opacity:0}}><Counter info={counterData}/></div>
+                
+                <div style={{ flex: 0, display: 'flex', justifyContent: 'center'}}>
+                    {makeCircleSvgWithColor(contents[0], contents.length-1, contents.length!==0)}
+                </div>
+
+                {/* Invisible counter spacer, because I can't figure out centering one item*/}
+                <div style={{alignSelf:'center', flex:1, opacity:1}}><Counter info={counterData}/></div>
+                
             </div>
+
             <div style={rowContainerStyle}>
                 <div id='svg-row' style={svgRowStyle}>
                     {contents.slice(1).toReversed().map((color, i) => makeCircleSvgWithColor(color, i, false/*i===contents.length-21*/))}
                 </div>
             </div>
+
         </div>
     );
 }

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import PickingJar from '../components/PickingJar';
 import ResultsTray from '../components/ResultsTray';
 
-function PickingJarContainer(){
+function PickingJarContainer({specifications}){
 
     const [results, setResults] = useState([]);
     const [containerWidth, setContainerWidth] = useState(null);
@@ -40,19 +40,21 @@ function PickingJarContainer(){
         return Math.floor(Math.random() * (max - min) ) + min;
     }
 
-    const specifications = {};
-    specifications['colors'] = ['red', 'blue', 'black', 'coral', 'lightblue', 'green'];
-    specifications['counts'] = [3, 7, 1, 2, 12, 3];
+    //const specifications = {};
+    //specifications['colors'] = ['red', 'blue', 'black', 'coral', 'lightblue', 'green'];
+    //specifications['counts'] = [3, 7, 1, 2, 12, 3];
+    console.log(specifications)
 
     const total = specifications.counts.reduce((sum, a) => sum + a, 0);
 
     function handlePick({target}){
+        console.log(`total=${total}`);
         let indexChoice = getRndInteger(0, total);
         //alert(`Total: ${total}, Choice: ${indexChoice}`);
         let colorIndex = 0;
         while (indexChoice > 0 && colorIndex < specifications.colors.length) {
             indexChoice -= specifications.counts[colorIndex];
-            if (indexChoice > 0) colorIndex++;
+            if (indexChoice >= 0) colorIndex++;
         }
 
         setResults([specifications.colors[colorIndex], ...results]);
