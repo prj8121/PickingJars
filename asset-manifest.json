@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/PickingJars/static/css/main.073c9b0a.css",
+    "main.js": "/PickingJars/static/js/main.4a5dcf5a.js",
+    "static/js/787.64324f76.chunk.js": "/PickingJars/static/js/787.64324f76.chunk.js",
+    "index.html": "/PickingJars/index.html",
+    "main.073c9b0a.css.map": "/PickingJars/static/css/main.073c9b0a.css.map",
+    "main.4a5dcf5a.js.map": "/PickingJars/static/js/main.4a5dcf5a.js.map",
+    "787.64324f76.chunk.js.map": "/PickingJars/static/js/787.64324f76.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.073c9b0a.css",
+    "static/js/main.4a5dcf5a.js"
+  ]
+}
