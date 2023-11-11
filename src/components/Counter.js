@@ -10,7 +10,7 @@ function Counter({info}){
 
     const containerStyle = {
         display: 'flex',
-        border: 'green dotted 2px',
+        //border: 'green dotted 2px',
 
     }
     
