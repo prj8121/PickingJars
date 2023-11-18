@@ -1,6 +1,7 @@
 //import logo from './logo.svg';
 import './App.css';
-import PickingJarContainer from './containers/PickingJarContainer';
+//import PickingJarContainer from './containers/PickingJarContainer';
+import Experiment from './components/Experiment';
 
 function App() {
 
@@ -22,12 +23,13 @@ function App() {
           Learn React
         </a>
   </header> */}
-      <div id='jar-row' style={{flexWrap:'wrap', display:'flex', flexDirection:'row', justifyContent: 'space-evenly', alignItems: 'top', margin:'20px'}}>
+      {/*<div id='jar-row' style={{flexWrap:'wrap', display:'flex', flexDirection:'row', justifyContent: 'space-evenly', alignItems: 'top', margin:'20px'}}>
         <PickingJarContainer key='1'/>
         <PickingJarContainer key='2'/>
         <PickingJarContainer key='3'/>
+      </div>*/}
 
-      </div>
+      <Experiment/>
     </div>
   );
 }
