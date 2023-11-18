@@ -7,8 +7,6 @@ function makeLabel(text, labelWidth){
 
 function makeLabel2(textElement, labelWidth){
     const isEmpty = textElement.props.children.length === 0;
-    console.log('primer')
-    console.log(textElement.props.children);
 
     const textStyle = {
         position: 'relative',
