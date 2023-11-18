@@ -1,6 +1,8 @@
 import React from 'react';
 //import basicJar from '../images/BasicJar.png';
+import LabelSlot from './LabelSlot';
 import basicJar from '../images/PickingJarGoogleDrawing.png';
+import colorCountToText from '../util/colorCountToText';
 
 function PickingJar({specs, onPick, containerWidth}){
 
@@ -13,7 +15,7 @@ function PickingJar({specs, onPick, containerWidth}){
     }
     const textStyle = {
         //border: '2px solid black',
-        position: 'relative',
+        //position: 'relative',
     }
     const buttonStyle = {
         display: 'block',
@@ -37,9 +39,17 @@ function PickingJar({specs, onPick, containerWidth}){
         <div>
             <div style={containerStyle}>
                 <div style={textContainerStyle}>
-                    {specs.colors.map((color, i) => (
-                        <span style={{color: color, ...textStyle}} key={i}>{specs.counts[i]} </span>
-                    ))}
+                    <LabelSlot 
+                    //label = {specs}
+                    label = {{colors:[],counts:[]}}
+                    labelTextStyle={textStyle}
+                    labelWidth = {0.8 * containerWidth}
+                    //labelTextElement={colorCountToText(specs.colors, specs.counts, textStyle)}
+                    //labelTextElement={specs.colors.map((color, i) => (
+                    //    <span style={{color: color, ...textStyle}} key={i}>{specs.counts[i]} </span>
+                    //))}
+                    //labelWidth=`${containerWidth}px`
+                    />
                     {/*<p style={textStyle}>
                         Colors: {specs.colors}
                     </p>*/}

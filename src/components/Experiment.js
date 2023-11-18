@@ -11,7 +11,7 @@ const jarRowStyle = {
 }
 
 function Experiment({specs}){
-    const numJars = 4; //specs.numJars;
+    const numJars = 6; //specs.numJars;
     const jars = [
         {
             colors: ['red', 'blue'],
@@ -28,6 +28,14 @@ function Experiment({specs}){
         {
             colors: ['red', 'blue'],
             counts: [9, 1],
+        },
+        {
+            colors: ['green', 'blue'],
+            counts: [1, 2],
+        },
+        {
+            colors: [],
+            counts: [],
         }
     ]
 
