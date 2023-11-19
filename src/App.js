@@ -3,6 +3,8 @@ import './App.css';
 //import PickingJarContainer from './containers/PickingJarContainer';
 import Experiment from './components/Experiment';
 import LabelSheet from './containers/LabelSheet';
+import { DndProvider } from 'react-dnd'
+import { HTML5Backend } from 'react-dnd-html5-backend'
 
 function App() {
 
@@ -10,10 +12,11 @@ function App() {
 
   return (
     <div className="App" style={{backgroundColor:"beige"}}>
-      
-      <LabelSheet/>
+      <DndProvider backend={HTML5Backend}>
+        <LabelSheet/>
 
-      <Experiment/>
+        <Experiment/>
+			</DndProvider>
     </div>
   );
 }
