@@ -13,7 +13,6 @@ function App() {
   return (
     <div className="App" style={{backgroundColor:"beige"}}>
       <DndProvider backend={HTML5Backend}>
-        <LabelSheet/>
 
         <Experiment/>
 			</DndProvider>

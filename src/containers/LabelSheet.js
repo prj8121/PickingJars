@@ -1,10 +1,11 @@
 import  React, { useState } from 'react';
 import LabelSlot from '../components/LabelSlot';
 import colorCountToText from '../util/colorCountToText';
+import { LabelContainerTypes } from '../util/LabelContainerTypes';
 
-function LabelSheet(){
+function LabelSheet({labels, swapLabels}){
 
-    const jars = [
+    labels = labels?labels:[
         {
             colors: ['red', 'blue'],
             counts: [4, 6],
@@ -28,23 +29,23 @@ function LabelSheet(){
     ]
 
 
-
-    const stuff = [
-        jars.map((jar, i)=>{
+    const filledLabelList = [
+        labels.map((label, i)=>{
             return(
                 <LabelSlot 
-                label = {jar}
-                labelTextElement={colorCountToText(jar.colors, jar.counts)}/>
+                swapLabels={swapLabels}
+                containerIndex = {i}
+                containerType={LabelContainerTypes.SHEET}
+                label = {label}
+                labelTextElement={colorCountToText(label.colors, label.counts)}/>
             );
         })
     ]
 
-    const [slots, setSlots] = useState(stuff);
-
     return (
     <div>
         {
-            slots.map((slot, index)=>{
+            filledLabelList.map((slot, index)=>{
                 return slot;
             })
         }

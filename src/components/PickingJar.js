@@ -1,13 +1,15 @@
-import React, {useState} from 'react';
+import React from 'react';
 //import basicJar from '../images/BasicJar.png';
 import LabelSlot from './LabelSlot';
 import basicJar from '../images/PickingJarGoogleDrawing.png';
-import colorCountToText from '../util/colorCountToText';
+//import colorCountToText from '../util/colorCountToText';
+import { LabelContainerTypes } from '../util/LabelContainerTypes';
 
-function PickingJar({specs, onPick, containerWidth}){
+function PickingJar({specs, onPick, containerWidth, swapLabels, containerIndex, label}){
 
-    const [label, setLabel] = useState({colors:[], counts:[]})
+    //const [label, setLabel] = useState({colors:[], counts:[]})
 
+    /*
     const updateLabel = ({label}) => {
         //alert(`${JSON.stringify(label.colors)}, ${JSON.stringify(label.counts)}`);
         setLabel({
@@ -15,6 +17,7 @@ function PickingJar({specs, onPick, containerWidth}){
             counts: label?label.counts:[],
         })
     }
+    */
 
     const containerStyle = {
         position:'relative',
@@ -53,7 +56,9 @@ function PickingJar({specs, onPick, containerWidth}){
                     label = {label}
                     labelTextStyle={textStyle}
                     labelWidth = {0.8 * containerWidth}
-                    updateLabel={updateLabel}
+                    containerType={LabelContainerTypes.JAR}
+                    swapLabels={swapLabels}
+                    containerIndex={containerIndex}
                     //labelTextElement={colorCountToText(specs.colors, specs.counts, textStyle)}
                     //labelTextElement={specs.colors.map((color, i) => (
                     //    <span style={{color: color, ...textStyle}} key={i}>{specs.counts[i]} </span>

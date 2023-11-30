@@ -2,13 +2,11 @@ import React, { useState, useEffect, useRef } from 'react';
 import PickingJar from '../components/PickingJar';
 import ResultsTray from '../components/ResultsTray';
 
-function PickingJarContainer({specifications}){
+function PickingJarContainer({specifications, swapLabels, containerIndex, label}){
 
     const [results, setResults] = useState([]);
     const [containerWidth, setContainerWidth] = useState(null);
     const elementRef = useRef(null);
-
-    
 
     useEffect(()=>{
 
@@ -43,6 +41,7 @@ function PickingJarContainer({specifications}){
     //const specifications = {};
     //specifications['colors'] = ['red', 'blue', 'black', 'coral', 'lightblue', 'green'];
     //specifications['counts'] = [3, 7, 1, 2, 12, 3];
+    console.log('Specifications')
     console.log(specifications)
 
     const total = specifications.counts.reduce((sum, a) => sum + a, 0);
@@ -71,7 +70,15 @@ function PickingJarContainer({specifications}){
 
     return (
         <div style={{flex:1}} ref={elementRef}>
-            <PickingJar style={{ alignSelf: 'flex-start' }} specs={specifications} onPick={handlePick} containerWidth={containerWidth}/>
+            <PickingJar 
+                style={{ alignSelf: 'flex-start' }} 
+                specs={specifications} 
+                onPick={handlePick} 
+                containerWidth={containerWidth}
+                swapLabels={swapLabels}
+                containerIndex={containerIndex}
+                label={label}
+            />
             <div style={containerStyle}>
                 <ResultsTray contents={results} containerWidth={containerWidth} />
             </div>

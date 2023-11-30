@@ -1,15 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useDrag, useDrop } from 'react-dnd';
-import Label from '../images/JarLabel.png';
+//import Label from '../images/JarLabel.png';
 import makeLabel from '../util/MakeLabel';
 import { ItemTypes } from '../util/DraggableItemTypes';
+//import { LabelContainerTypes as LCT } from '../util/LabelContainerTypes';
 
-function LabelSlot({label, labelTextStyle, labelWidth, updateLabel}) {
+function LabelSlot({label, labelTextStyle, labelWidth, updateLabel, swapLabels, containerIndex, containerType}) {
 
     const [{ isDragging }, drag] = useDrag(
         () => ({
             type: ItemTypes.LABEL,
-            item: { label },
+            item: ()=> ({ label, containerIndex, containerType }),
             collect: (monitor) => ({
             isDragging: monitor.isDragging(),
         }),
@@ -17,23 +18,27 @@ function LabelSlot({label, labelTextStyle, labelWidth, updateLabel}) {
         end: (item, monitor) => {
             //const { id: droppedId, originalIndex } = item
             const didDrop = monitor.didDrop()
-            const dropResult = monitor.getDropResult();
-            alert(JSON.stringify(dropResult));
+            //const dropResult = monitor.getDropResult();
+            //alert(dropResult);
+            //alert(`moving label:${JSON.stringify(label)}`);
             if (!didDrop) {
-                alert(`you dropped this!:${JSON.stringify(label)}`)
+                //alert(`you dropped this!:${JSON.stringify(label)}`)
                 //color = 'white';
                 //moveCard(droppedId, originalIndex)
             }
         }, 
         }),
-        [label/*, moveCard*/],
+        [label, containerIndex, containerType/*, moveCard*/],
     );
 
-    const [{ isOver, canDrop, item }, drop] = useDrop({
+    const [{ isOver, canDrop }, drop] = useDrop({
         accept: ItemTypes.LABEL,
-        drop: ()=> {
-            alert(JSON.stringify(item))
-            return(updateLabel(item))
+        drop: (item)=> {
+            //alert(`item = ${JSON.stringify(item)}`)
+            //alert(`receiver label:${JSON.stringify(label)}`);
+            //return(updateLabel(item))
+            //alert(JSON.stringify([item.containerIndex, item.containerType, containerIndex, containerType]))
+            return(swapLabels(item.containerIndex, item.containerType, containerIndex, containerType))
         },
         collect: (monitor) => ({
             isOver: monitor.isOver(),
