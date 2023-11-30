@@ -1,4 +1,4 @@
-import  React, { useState } from 'react';
+import  React from 'react';
 import LabelSlot from '../components/LabelSlot';
 import colorCountToText from '../util/colorCountToText';
 import { LabelContainerTypes } from '../util/LabelContainerTypes';
@@ -42,8 +42,17 @@ function LabelSheet({labels, swapLabels}){
         })
     ]
 
+    const jarRowStyle = {
+        flexWrap:'wrap',
+        display:'flex',
+        flexDirection:'row',
+        justifyContent: 'space-evenly',
+        alignItems: 'top',
+        margin:'20px'
+    }
+
     return (
-    <div>
+    <div style={jarRowStyle}>
         {
             filledLabelList.map((slot, index)=>{
                 return slot;

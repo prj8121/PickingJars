@@ -2,7 +2,6 @@
 import './App.css';
 //import PickingJarContainer from './containers/PickingJarContainer';
 import Experiment from './components/Experiment';
-import LabelSheet from './containers/LabelSheet';
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 

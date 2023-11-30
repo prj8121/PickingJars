@@ -14,11 +14,6 @@ const jarRowStyle = {
 
 function Experiment({specs}){
 
-    const numJars = 6; //specs.numJars;
-    const emptyJars = [];
-    for (let i = 0; i < numJars; i++){
-        emptyJars.push({colors:[],counts:[]})
-    }
     const jars = [
         {
             colors: ['red', 'blue'],
@@ -39,14 +34,16 @@ function Experiment({specs}){
         {
             colors: ['green', 'blue'],
             counts: [1, 2],
-        },
-        {
-            colors: [],
-            counts: [],
         }
-    ]
+    ];
 
+    const numJars = jars.length;
+    const emptyJars = [];
+    for (let i = 0; i < numJars; i++){
+        emptyJars.push({colors:[],counts:[]})
+    }
     
+
     const [labelsInSheet, setLabelsInSheet] = useState(jars);
     const [labelsInJars, setLabelsInJars] = useState(emptyJars);
 
@@ -138,7 +135,13 @@ function Experiment({specs}){
         /* <div id='jar-row' style={{flexWrap:'wrap', display:'flex', flexDirection:'row', justifyContent: 'space-evenly', alignItems: 'top', margin:'20px'}}> */
         <div>
             <p>
-                This is an experiment with {numJars} jars
+                Here we have {numJars} jars and {numJars} labels.
+            </p>
+            <p>
+                Each Jar contains a unique ratio of tiles matching one of the ratios on a label.
+            </p>
+            <p>
+                Drag and drop the labels onto the matching jars.
             </p>
             <LabelSheet labels={labelsInSheet} swapLabels={swapLabels}/>
             <div id='jar-row' style={jarRowStyle}>
