@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PickingJar from '../components/PickingJar';
 import ResultsTray from '../components/ResultsTray';
+import getNumFromStyle from '../util/getNumFromStyle';
 
 function PickingJarContainer({specifications, swapLabels, containerIndex, label}){
 
@@ -26,30 +27,16 @@ function PickingJarContainer({specifications, swapLabels, containerIndex, label}
         }
     }, []);
 
-    function getNumFromStyle(styleString) {
-        const suffix = styleString.slice(-2);
-        if( suffix === "px") return styleString.slice(0,-2);
-        if( suffix.slice(-1) === '%') return styleString.slice(0, -1);
-        return "Error";
-    }
-
     // From https://www.w3schools.com/js/js_random.asp
     function getRndInteger(min, max) {
         return Math.floor(Math.random() * (max - min) ) + min;
     }
-
-    //const specifications = {};
-    //specifications['colors'] = ['red', 'blue', 'black', 'coral', 'lightblue', 'green'];
-    //specifications['counts'] = [3, 7, 1, 2, 12, 3];
-    console.log('Specifications')
-    console.log(specifications)
 
     const total = specifications.counts.reduce((sum, a) => sum + a, 0);
 
     function handlePick({target}){
         console.log(`total=${total}`);
         let indexChoice = getRndInteger(0, total);
-        //alert(`Total: ${total}, Choice: ${indexChoice}`);
         let colorIndex = 0;
         while (indexChoice > 0 && colorIndex < specifications.colors.length) {
             indexChoice -= specifications.counts[colorIndex];
@@ -59,13 +46,13 @@ function PickingJarContainer({specifications, swapLabels, containerIndex, label}
         setResults([specifications.colors[colorIndex], ...results]);
     }
 
-    const containerStyle = {
-        flex:1,
-        flexDirection:'column',
-        display:'flex',
+    const resultsTrayStyle = {
+        //flex:1,
+        //flexDirection:'column',
+        //display:'flex',
         //border:'dashed lightgreen 2px',
-        justifyContent:'center',
-        flexGrow:1
+        //justifyContent:'center',
+        //flexGrow:1
     }
     const JarStyle = {
         flex:1,
@@ -83,7 +70,7 @@ function PickingJarContainer({specifications, swapLabels, containerIndex, label}
                 containerIndex={containerIndex}
                 label={label}
             />
-            <div /*style={containerStyle}*/>
+            <div style={resultsTrayStyle}>
                 <ResultsTray contents={results} containerWidth={containerWidth} />
             </div>
         </div>

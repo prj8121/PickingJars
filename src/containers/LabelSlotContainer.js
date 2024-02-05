@@ -1,8 +1,7 @@
 import React, {useState, useEffect, useRef} from 'react';
 import LabelSlot from '../components/LabelSlot';
 import colorCountToText from '../util/colorCountToText';
-import { ItemTypes } from '../util/DraggableItemTypes';
-//import { LabelContainerTypes as LCT } from '../util/LabelContainerTypes';
+import getNumFromStyle from '../util/getNumFromStyle';
 
 function LabelSlotContainer({label, swapLabels, containerIndex, containerType, labelSheetWidth}) {
 
@@ -26,13 +25,6 @@ function LabelSlotContainer({label, swapLabels, containerIndex, containerType, l
             window.removeEventListener('resize', fixContainerWidth)
         }
     }, []);
-
-    function getNumFromStyle(styleString) {
-        const suffix = styleString.slice(-2);
-        if( suffix === "px") return styleString.slice(0,-2);
-        if( suffix.slice(-1) === '%') return styleString.slice(0, -1);
-        return "Error";
-    }
 
     const containerStyle = {
         flex: 1,

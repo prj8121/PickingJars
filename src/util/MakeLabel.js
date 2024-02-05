@@ -1,16 +1,9 @@
 import labelPNG from '../images/JarLabelv2.png';
 import emptyLabelPNG from '../images/DottedJarLabelv2.png';
 
-function makeLabel(text, labelWidth){
-    return(makeLabel2(text, labelWidth));
-}
-
-function makeLabel2(textElement, labelWidth){
+function makeLabel(textElement, labelWidth){
     const isEmpty = textElement.props.children.length === 0;
 
-    const textStyle = {
-        position: 'relative',
-    };
     const imageStyle = {
         maxWidth: labelWidth//`${labelWidth}px`,
     };
@@ -39,10 +32,11 @@ function makeLabel2(textElement, labelWidth){
     )
 }
 
+/*
 function makeLabel1(text){
 
     return(
-        //{/*xmlns:xlink="http://www.w3.org/1999/xlink" */}
+        //{xmlns:xlink="http://www.w3.org/1999/xlink"}
         <svg version="1.1" viewBox="0.0 0.0 407.5196850393701 174.23884514435696" fill="none" stroke="none" strokeLinecap="square" strokeMiterlimit="10" xmlns="http://www.w3.org/2000/svg">
             <clipPath id="p.0">
                 <path d="m0 0l407.51968 0l0 174.23885l-407.51968 0l0 -174.23885z" clip-rule="nonzero"/>
@@ -72,6 +66,7 @@ function makeLabel1(text){
             </g>
         </svg>
     )
-}
+} 
+*/
 
 export default makeLabel;
