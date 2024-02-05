@@ -60,19 +60,25 @@ function LabelSlot({label, labelTextStyle, labelWidth, updateLabel, swapLabels, 
             color = 'coral'
         }
     }
+    const labelSlotStyle = {
+        backgroundColor: color,
+        //border: 'dotted coral 2px',
+        textAlign: 'center',
+    }
     
-    
-    
+    // <p style={labelTextStyle}>labelWidth={labelWidth}</p>
     const labelTextElement = <>
+        
         {label.colors.map((color, i) => (
-            <span style={{color: color}} key={i}>{label.counts[i]} </span>
+                <span style={{color: color}} key={i}>{label.counts[i]} </span>
         ))}
     </>
+    const finalLabel = makeLabel(labelTextElement, labelWidth * 1)
     // Do not know why ref is like this, but I found it in the doc examples
     // ref={(node)=>{drag(drop(node))}}
     return (
-    <div ref={(node)=>{drag(drop(node))}} style={{backgroundColor:color}}>
-        {makeLabel(labelTextElement, labelWidth)}
+    <div ref={(node)=>{drag(drop(node))}} style={labelSlotStyle}>
+        {finalLabel}
     </div>
     );
 }

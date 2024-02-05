@@ -3,15 +3,6 @@ import PickingJarContainer from '../containers/PickingJarContainer';
 import LabelSheet from '../containers/LabelSheet';
 import { LabelContainerTypes as LCT} from '../util/LabelContainerTypes';
 
-const jarRowStyle = {
-    flexWrap:'wrap',
-    display:'flex',
-    flexDirection:'row',
-    justifyContent: 'space-evenly',
-    alignItems: 'top',
-    margin:'20px'
-}
-
 function Experiment({specs}){
 
     const jars = [
@@ -130,29 +121,78 @@ function Experiment({specs}){
         );*/
     }
 
+    const labelSheetMaxWidth = `${100/(numJars+1)}%`
+
+    const jarRowStyle = {
+        flexWrap:'wrap',
+        display:'flex',
+        flexDirection:'row',
+        justifyContent: 'space-evenly',
+        alignItems: 'top',
+        margin:'20px'
+    }
+    const labelSheetWrapperStyle = {
+        //display:'flex',
+        maxWidth: labelSheetMaxWidth,
+        
+        flex:1,
+        //border:'dashed lightgreen 2px',
+    }
+    const JarRowWrapperStyle = {
+        display:'flex',
+        flex:1,
+    }
+    const InteractablesWrapperStyle = {
+        display:'flex',
+        flexDirection:'row',
+        //justifyContent:'center',
+        //border:'dashed lightgreen 2px',
+        //alignItems:'center'
+    }
+
+/*
+{Array.from({ length: numJars }, (_, index) => (
+                            <PickingJarContainer 
+                                containerIndex={index}
+                                specifications={jars[index]}
+                                swapLabels={swapLabels}
+                                label = {labelsInJars[index]}
+                            />
+                        ))}
+*/
 
     return (
         /* <div id='jar-row' style={{flexWrap:'wrap', display:'flex', flexDirection:'row', justifyContent: 'space-evenly', alignItems: 'top', margin:'20px'}}> */
         <div>
-            <p>
-                Here we have {numJars} jars and {numJars} labels.
-            </p>
-            <p>
-                Each Jar contains a unique ratio of tiles matching one of the ratios on a label.
-            </p>
-            <p>
-                Drag and drop the labels onto the matching jars.
-            </p>
-            <LabelSheet labels={labelsInSheet} swapLabels={swapLabels}/>
-            <div id='jar-row' style={jarRowStyle}>
-                {Array.from({ length: numJars }, (_, index) => (
-                    <PickingJarContainer 
-                        containerIndex={index}
-                        specifications={jars[index]}
-                        swapLabels={swapLabels}
-                        label = {labelsInJars[index]}
-                    />
-                ))}
+            <div style={{display:"flex", justifyContent:"space-evenly"}}>
+                <p>
+                    Here we have {numJars} jars and {numJars} labels.
+                </p>
+                <p>
+                    Each Jar contains a unique ratio of tiles matching one of the ratios on a label.
+                </p>
+                <p>
+                    Drag and drop the labels onto the matching jars.
+                </p>
+            </div>
+            
+            <div style={InteractablesWrapperStyle}>
+
+                <div style={labelSheetWrapperStyle}>                   
+                    <LabelSheet maxWith={labelSheetMaxWidth} labels={labelsInSheet} swapLabels={swapLabels}/>
+                </div>
+                
+                <div style={JarRowWrapperStyle}>
+                    {Array.from({ length: numJars }, (_, index) => (
+                                <PickingJarContainer 
+                                    containerIndex={index}
+                                    specifications={jars[index]}
+                                    swapLabels={swapLabels}
+                                    label = {labelsInJars[index]}
+                                />
+                            ))}
+                </div>
+
             </div>
             
         </div>

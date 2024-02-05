@@ -1,9 +1,10 @@
-import  React from 'react';
+import React from 'react';
 import LabelSlot from '../components/LabelSlot';
+import LabelSlotContainer from '../containers/LabelSlotContainer';
 import colorCountToText from '../util/colorCountToText';
 import { LabelContainerTypes } from '../util/LabelContainerTypes';
 
-function LabelSheet({labels, swapLabels}){
+function LabelSheet({maxWidth, labels, swapLabels}){
 
     labels = labels?labels:[
         {
@@ -32,32 +33,48 @@ function LabelSheet({labels, swapLabels}){
     const filledLabelList = [
         labels.map((label, i)=>{
             return(
+                <LabelSlotContainer
+                swapLabels={swapLabels}
+                containerIndex = {i}
+                containerType={LabelContainerTypes.SHEET}
+                label = {label}
+                labelSheetWidth = {maxWidth}
+                //labelTextElement={colorCountToText(label.colors, label.counts)}
+                />
+            );
+            /* return(
                 <LabelSlot 
                 swapLabels={swapLabels}
                 containerIndex = {i}
                 containerType={LabelContainerTypes.SHEET}
                 label = {label}
+                labelWidth={containerWidth?containerWidth:150}
                 labelTextElement={colorCountToText(label.colors, label.counts)}/>
-            );
+            ); */
         })
     ]
 
-    const jarRowStyle = {
-        flexWrap:'wrap',
-        display:'flex',
-        flexDirection:'row',
-        justifyContent: 'space-evenly',
-        alignItems: 'top',
-        margin:'20px'
+    const sheetColumnStyle = {
+        //flex:1,
+        //display:'flex',
+        flexDirection:'column',
+        justifyContent: 'center',
+        //border: 'dotted red 2px',
+        //justifyContent: 'space-evenly',
+        //alignItems: 'center',
+        //maxWidth: maxWidth,
+        //margin:'20px'
     }
 
     return (
-    <div style={jarRowStyle}>
-        {
-            filledLabelList.map((slot, index)=>{
-                return slot;
-            })
-        }
+    <div>
+        <div style={sheetColumnStyle}>
+            {
+                filledLabelList.map((slot, index)=>{
+                    return slot;
+                })
+            }
+        </div>
     </div>);
 }
 

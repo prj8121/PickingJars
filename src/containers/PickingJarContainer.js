@@ -67,11 +67,15 @@ function PickingJarContainer({specifications, swapLabels, containerIndex, label}
         justifyContent:'center',
         flexGrow:1
     }
+    const JarStyle = {
+        flex:1,
+        //border:'dashed lightgreen 2px',
+    }
 
     return (
-        <div style={{flex:1}} ref={elementRef}>
+        <div style={JarStyle} ref={elementRef}>
             <PickingJar 
-                style={{ alignSelf: 'flex-start' }} 
+                //style={{ alignSelf: 'flex-start' }} 
                 specs={specifications} 
                 onPick={handlePick} 
                 containerWidth={containerWidth}
@@ -79,7 +83,7 @@ function PickingJarContainer({specifications, swapLabels, containerIndex, label}
                 containerIndex={containerIndex}
                 label={label}
             />
-            <div style={containerStyle}>
+            <div /*style={containerStyle}*/>
                 <ResultsTray contents={results} containerWidth={containerWidth} />
             </div>
         </div>

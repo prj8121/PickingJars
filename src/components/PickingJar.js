@@ -20,6 +20,7 @@ function PickingJar({specs, onPick, containerWidth, swapLabels, containerIndex, 
     */
 
     const containerStyle = {
+        flexDirection : 'column',
         position:'relative',
         //backgroundColor:'coral',
         //border: '2px solid blue',

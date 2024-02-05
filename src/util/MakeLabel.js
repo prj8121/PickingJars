@@ -12,13 +12,14 @@ function makeLabel2(textElement, labelWidth){
         position: 'relative',
     };
     const imageStyle = {
-        maxWidth: `${labelWidth}px`,
+        maxWidth: labelWidth//`${labelWidth}px`,
     };
     const containerStyle = {
         position:'relative',
-        display: 'inline-block',
+        //display: 'flex', //'inline-block',
         textAlign: 'center',
-        maxWidth: `${labelWidth}px`,
+        maxWidth: labelWidth,//`${labelWidth}px`,
+        //border: 'dotted black 2px',
     };
     const textContainerStyle = {
         position: 'absolute',
