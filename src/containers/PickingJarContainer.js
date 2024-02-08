@@ -71,7 +71,7 @@ function PickingJarContainer({specifications, swapLabels, containerIndex, label}
                 label={label}
             />
             <div style={resultsTrayStyle}>
-                <ResultsTray contents={results} containerWidth={containerWidth} />
+                <ResultsTray contents={results} containerWidth={containerWidth} colorOrder={specifications.colors}/>
             </div>
         </div>
         

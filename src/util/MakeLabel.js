@@ -7,7 +7,6 @@ function makeLabel(labelSpecs, labelWidth){
 }
 
 function makeLabelWithTiles(labelSpecs, labelWidth) {
-    if (labelSpecs.colors.length > 3) console.log(labelSpecs.colors.length)
     const isEmpty = labelSpecs.colors.length === 0;
     const radius = (0.6 * labelWidth) / (2 * (1 + labelSpecs.colors.length));
 
