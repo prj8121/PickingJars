@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PickingJarContainer from '../containers/PickingJarContainer';
 import LabelSheet from '../containers/LabelSheet';
 import { LabelContainerTypes as LCT} from '../util/LabelContainerTypes';
+import shuffleArrayInPlace from '../util/Shuffler';
 
 function Experiment({specs}){
 
@@ -27,6 +28,9 @@ function Experiment({specs}){
             counts: [1, 2],
         }
     ];
+    
+    var shuffledJars = jars.slice(0);
+    shuffleArrayInPlace(shuffledJars);
 
     const numJars = jars.length;
     const emptyJars = [];
@@ -124,7 +128,7 @@ function Experiment({specs}){
                     {Array.from({ length: numJars }, (_, index) => (
                                 <PickingJarContainer 
                                     containerIndex={index}
-                                    specifications={jars[index]}
+                                    specifications={shuffledJars[index]}
                                     swapLabels={swapLabels}
                                     label = {labelsInJars[index]}
                                 />
