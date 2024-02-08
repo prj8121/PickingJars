@@ -95,17 +95,21 @@ function Experiment({specs}){
         flexDirection:'row',
         //border:'dashed lightgreen 2px',
     }
+    const InstructionsParagraphStyle = {
+        marginLeft:"2%",
+        marginRight:"2%",
+    }
 
     return (
         <div>
             <div style={{display:"flex", justifyContent:"space-evenly"}}>
-                <p>
-                    Here we have {numJars} jars and {numJars} labels.
+                <p style={InstructionsParagraphStyle}>
+                    Here we have {numJars} jars of colored tiles and {numJars} matching labels for those jars.
                 </p>
-                <p>
-                    Each Jar contains a unique ratio of tiles matching one of the ratios on a label.
+                <p style={InstructionsParagraphStyle}>
+                    After you pick a tile from a jar it is placed back into the jar to maintain the color ratios.
                 </p>
-                <p>
+                <p style={InstructionsParagraphStyle}>
                     Drag and drop the labels onto the matching jars.
                 </p>
             </div>
