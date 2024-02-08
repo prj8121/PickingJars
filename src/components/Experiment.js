@@ -6,7 +6,7 @@ import shuffleArrayInPlace from '../util/Shuffler';
 import { jarList } from '../jarSpecs/JarSpecifications';
 
 function Experiment({specs}){
-    const jars = jarList[2];
+    const jars = jarList[0];
     
     var shuffledJars = jars.slice(0);
     shuffleArrayInPlace(shuffledJars);

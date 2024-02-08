@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDrag, useDrop } from 'react-dnd';
 //import Label from '../images/JarLabel.png';
-import makeLabel from '../util/MakeLabel';
+import makeLabelWithTiles from '../util/MakeLabel';
 import { ItemTypes } from '../util/DraggableItemTypes';
 //import { LabelContainerTypes as LCT } from '../util/LabelContainerTypes';
 
@@ -77,7 +77,9 @@ function LabelSlot({label, labelTextStyle, labelWidth, updateLabel, swapLabels, 
                 <span style={{color: color}} key={i}>{label.counts[i]} </span>
         ))}
     </>
-    const finalLabel = makeLabel(labelTextElement, labelWidth * 1)
+    const finalLabel = makeLabelWithTiles(label, labelWidth * 1);
+    // const finalLabel = makeLabelWithTiles(label, labelWidth * 1);
+
     // Do not know why ref is like this, but I found it in the doc examples
     // ref={(node)=>{drag(drop(node))}}
     return (

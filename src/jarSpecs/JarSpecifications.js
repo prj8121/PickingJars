@@ -52,7 +52,7 @@ export const rainbowJars = [
     }
 ];
 
-export const CTLJars = [
+export const CIVjars211 = [
     {
         colors: ['coral', 'indigo', 'violet'],
         counts: [1, 1, 1],
@@ -71,4 +71,23 @@ export const CTLJars = [
     },
 ];
 
-export const jarList = [jars1, rainbowJars, CTLJars];
+export const CIVjars511 = [
+    {
+        colors: ['coral', 'indigo', 'violet'],
+        counts: [1, 1, 1],
+    },
+    {
+        colors: ['coral', 'indigo', 'violet'],
+        counts: [5,1,1],
+    },
+    {
+        colors: ['coral', 'indigo', 'violet'],
+        counts: [1,5,1],
+    },
+    {
+        colors: ['coral', 'indigo', 'violet'],
+        counts: [1,1,5],
+    },
+];
+
+export const jarList = [jars1, rainbowJars, CIVjars211, CIVjars511];

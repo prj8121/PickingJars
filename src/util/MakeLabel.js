@@ -1,7 +1,13 @@
 import labelPNG from '../images/JarLabelv2.png';
 import emptyLabelPNG from '../images/DottedJarLabelv2.png';
+import { makeCircleSvgWithColor } from './TileMaker';
+import { findByLabelText } from '@testing-library/react';
 
-function makeLabel(textElement, labelWidth){
+function makeLabel(labelSpecs, labelWidth){
+    return makeLabelWithTiles(labelSpecs, labelWidth);
+}
+
+function makeLabel1(textElement, labelWidth){
     const isEmpty = textElement.props.children.length === 0;
 
     const imageStyle = {
@@ -25,6 +31,48 @@ function makeLabel(textElement, labelWidth){
         <div style={containerStyle}>
             <div style={textContainerStyle}>
                 {textElement}
+            </div>
+            <img style={imageStyle} src={isEmpty?emptyLabelPNG:labelPNG} alt={'label failed to load'} />
+            
+        </div>
+    )
+}
+
+export function makeLabelWithTiles(labelSpecs, labelWidth) {
+    const isEmpty = labelSpecs.colors.length === 0;
+    const radius = (0.6 * labelWidth) / (2 * (1 + labelSpecs.colors.length));
+
+    const tileSvgList = [
+        labelSpecs.colors.map((color, i) => (
+            makeCircleSvgWithColor(color, radius, labelSpecs.counts[i] - 1, false)
+        ))
+    ];
+
+    const imageStyle = {
+        maxWidth: labelWidth//`${labelWidth}px`,
+    };
+    const containerStyle = {
+        position:'relative',
+        //display: 'flex', //'inline-block',
+        textAlign: 'center',
+        maxWidth: labelWidth,//`${labelWidth}px`,
+        //border: 'dotted black 2px',
+    };
+    const tileRowStyle = {
+        display: "flex",
+        justifyContent: "spaceEvenly",
+        position: 'absolute',
+        top:'50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+    }
+
+    return(
+        <div style={containerStyle}>
+            <div style={tileRowStyle}>
+                {tileSvgList.map((tile, _) => (
+                    <>{tile}</>
+                ))}
             </div>
             <img style={imageStyle} src={isEmpty?emptyLabelPNG:labelPNG} alt={'label failed to load'} />
             
