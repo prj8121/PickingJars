@@ -3,31 +3,10 @@ import PickingJarContainer from '../containers/PickingJarContainer';
 import LabelSheet from '../containers/LabelSheet';
 import { LabelContainerTypes as LCT} from '../util/LabelContainerTypes';
 import shuffleArrayInPlace from '../util/Shuffler';
+import { jarList } from '../jarSpecs/JarSpecifications';
 
 function Experiment({specs}){
-
-    const jars = [
-        {
-            colors: ['red', 'blue'],
-            counts: [4, 6],
-        },
-        {
-            colors: ['red', 'blue'],
-            counts: [5, 5],
-        },
-        {
-            colors: ['red', 'blue'],
-            counts: [6, 4],
-        },
-        {
-            colors: ['red', 'blue'],
-            counts: [9, 1],
-        },
-        {
-            colors: ['green', 'blue'],
-            counts: [1, 2],
-        }
-    ];
+    const jars = jarList[2];
     
     var shuffledJars = jars.slice(0);
     shuffleArrayInPlace(shuffledJars);

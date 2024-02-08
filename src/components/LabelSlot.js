@@ -50,6 +50,10 @@ function LabelSlot({label, labelTextStyle, labelWidth, updateLabel, swapLabels, 
 
     //color = isDragging?'orange':'none';
     let color = '';
+    /* const isEmpty = label.counts.length === 0;
+    if (isEmpty){
+        color = 'white';
+    } */
     if (isDragging){
         color = 'orange';
     } else {

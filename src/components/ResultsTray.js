@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Counter from './Counter';
+import { makeCircleSvgWithColor } from '../util/TileMaker';
 
 function ResultsTray({contents, containerWidth}){
 
@@ -18,9 +19,9 @@ function ResultsTray({contents, containerWidth}){
 
     useEffect(()=>{
         const latestColor = contents.length>0?contents[0]:null;
-        console.log(counterData)
+        /* console.log(counterData)
         console.log(`latestColor:${latestColor}`)
-        console.log(`contentss:${contents}`)
+        console.log(`contentss:${contents}`) */
         if (latestColor !== null){
             console.log("entered latestColor!==null")
             const index = counterData.colors.indexOf(latestColor);
@@ -50,41 +51,7 @@ function ResultsTray({contents, containerWidth}){
         
     }, [contents]);
 
-
-    const makeCircleSvgWithColor = (color, centerText, isMostRecent) => {
-        // Settings for tiles
-        //const circleRadius = trayWidth? 0.1*trayWidth : 1;
-        const circleRadius = containerWidth? 0.1*containerWidth : 1;
-        const margin = circleRadius / 8;
-        
-        // Computed attributes of tiles
-        
-        const circleCenterX = circleRadius+margin;
-        const boxWidth = circleCenterX * 2;
-
-
-        const svgStyle = {
-            flex: 1,
-            border: isMostRecent?'dashed green 2px':null,
-            display: centerText===-1?'none':'inline-flex',
-            //width: trayWidth?trayWidth*0.27:'27%', 
-        }
-
-        return (
-            <svg style={svgStyle} key={`tile${centerText}`} xmlns="http://www.w3.org/2000/svg" width={boxWidth} height={boxWidth} viewBox={`0 0 ${boxWidth} ${boxWidth}`}>
-                <circle cx={circleCenterX} cy={circleCenterX} r={circleRadius} fill={color} />
-                <text
-                    //display={isMostRecent?'none':'inline'}
-                    x={circleCenterX}
-                    y={circleCenterX}
-                    textAnchor="middle"
-                    dominantBaseline="middle"
-                    fill="white" // You can set the desired text properties
-                    fontSize={"1" * circleCenterX} // You can adjust the font size
-                >{centerText + 1}</text>
-            </svg>
-        );
-    }
+    const circleRadius = containerWidth? 0.1*containerWidth : 1
 
     const svgRowStyle = {
         //display: 'flex',
@@ -99,9 +66,7 @@ function ResultsTray({contents, containerWidth}){
         //border: 'dotted red 2px',
     }
 
-    console.log(svgRowStyle.maxWidth);
-
-    
+    /* console.log(svgRowStyle.maxWidth); */
 
     return (
         <div style={{display:'flex', flexDirection:'column', /*textAlign:'center',*/ /*alignItems:'center',*/ maxWidth:containerWidth?`${containerWidth}px`:'none'}}>
@@ -109,7 +74,7 @@ function ResultsTray({contents, containerWidth}){
                 <div style={{alignSelf:'start', flex:1, opacity:0}}><Counter info={counterData}/></div>
                 
                 <div style={{ flex: 0, display: 'flex', justifyContent: 'center'}}>
-                    {makeCircleSvgWithColor(contents[0], contents.length-1, contents.length!==0)}
+                    {makeCircleSvgWithColor(contents[0], circleRadius, contents.length-1, contents.length!==0)}
                 </div>
 
                 {/* Invisible counter spacer, because I can't figure out centering one item*/}
@@ -119,7 +84,7 @@ function ResultsTray({contents, containerWidth}){
 
             <div style={rowContainerStyle}>
                 <div id='svg-row' style={svgRowStyle}>
-                    {contents.slice(1).toReversed().map((color, i) => makeCircleSvgWithColor(color, i, false/*i===contents.length-21*/))}
+                    {contents.slice(1).toReversed().map((color, i) => makeCircleSvgWithColor(color, circleRadius, i, false/*i===contents.length-21*/))}
                 </div>
             </div>
 
