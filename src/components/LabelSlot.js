@@ -34,10 +34,6 @@ function LabelSlot({label, labelTextStyle, labelWidth, updateLabel, swapLabels, 
     const [{ isOver, canDrop }, drop] = useDrop({
         accept: ItemTypes.LABEL,
         drop: (item)=> {
-            //alert(`item = ${JSON.stringify(item)}`)
-            //alert(`receiver label:${JSON.stringify(label)}`);
-            //return(updateLabel(item))
-            //alert(JSON.stringify([item.containerIndex, item.containerType, containerIndex, containerType]))
             return(swapLabels(item.containerIndex, item.containerType, containerIndex, containerType))
         },
         collect: (monitor) => ({
@@ -47,8 +43,6 @@ function LabelSlot({label, labelTextStyle, labelWidth, updateLabel, swapLabels, 
         }),
     });
 
-
-    //color = isDragging?'orange':'none';
     let color = '';
     /* const isEmpty = label.counts.length === 0;
     if (isEmpty){
@@ -70,15 +64,7 @@ function LabelSlot({label, labelTextStyle, labelWidth, updateLabel, swapLabels, 
         textAlign: 'center',
     }
     
-    // <p style={labelTextStyle}>labelWidth={labelWidth}</p>
-    const labelTextElement = <>
-        
-        {label.colors.map((color, i) => (
-                <span style={{color: color}} key={i}>{label.counts[i]} </span>
-        ))}
-    </>
     const finalLabel = makeLabelWithTiles(label, labelWidth * 1);
-    // const finalLabel = makeLabelWithTiles(label, labelWidth * 1);
 
     // Do not know why ref is like this, but I found it in the doc examples
     // ref={(node)=>{drag(drop(node))}}

@@ -1,44 +1,12 @@
 import labelPNG from '../images/JarLabelv2.png';
 import emptyLabelPNG from '../images/DottedJarLabelv2.png';
 import { makeCircleSvgWithColor } from './TileMaker';
-import { findByLabelText } from '@testing-library/react';
 
 function makeLabel(labelSpecs, labelWidth){
     return makeLabelWithTiles(labelSpecs, labelWidth);
 }
 
-function makeLabel1(textElement, labelWidth){
-    const isEmpty = textElement.props.children.length === 0;
-
-    const imageStyle = {
-        maxWidth: labelWidth//`${labelWidth}px`,
-    };
-    const containerStyle = {
-        position:'relative',
-        //display: 'flex', //'inline-block',
-        textAlign: 'center',
-        maxWidth: labelWidth,//`${labelWidth}px`,
-        //border: 'dotted black 2px',
-    };
-    const textContainerStyle = {
-        position: 'absolute',
-        top:'50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-    }
-
-    return(
-        <div style={containerStyle}>
-            <div style={textContainerStyle}>
-                {textElement}
-            </div>
-            <img style={imageStyle} src={isEmpty?emptyLabelPNG:labelPNG} alt={'label failed to load'} />
-            
-        </div>
-    )
-}
-
-export function makeLabelWithTiles(labelSpecs, labelWidth) {
+function makeLabelWithTiles(labelSpecs, labelWidth) {
     const isEmpty = labelSpecs.colors.length === 0;
     const radius = (0.6 * labelWidth) / (2 * (1 + labelSpecs.colors.length));
 
@@ -79,6 +47,49 @@ export function makeLabelWithTiles(labelSpecs, labelWidth) {
         </div>
     )
 }
+
+/*
+    const labelTextElement = <>
+        
+        {label.colors.map((color, i) => (
+                <span style={{color: color}} key={i}>{label.counts[i]} </span>
+        ))}
+    </>
+*/
+
+/*
+function makeLabel1(textElement, labelWidth){
+    const isEmpty = textElement.props.children.length === 0;
+
+    const imageStyle = {
+        maxWidth: labelWidth//`${labelWidth}px`,
+    };
+    const containerStyle = {
+        position:'relative',
+        //display: 'flex', //'inline-block',
+        textAlign: 'center',
+        maxWidth: labelWidth,//`${labelWidth}px`,
+        //border: 'dotted black 2px',
+    };
+    const textContainerStyle = {
+        position: 'absolute',
+        top:'50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+    }
+
+    return(
+        <div style={containerStyle}>
+            <div style={textContainerStyle}>
+                {textElement}
+            </div>
+            <img style={imageStyle} src={isEmpty?emptyLabelPNG:labelPNG} alt={'label failed to load'} />
+            
+        </div>
+    )
+}
+
+*/
 
 /*
 function makeLabel1(text){
