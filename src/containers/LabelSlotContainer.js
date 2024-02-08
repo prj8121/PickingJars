@@ -1,6 +1,5 @@
 import React, {useState, useEffect, useRef} from 'react';
 import LabelSlot from '../components/LabelSlot';
-import colorCountToText from '../util/colorCountToText';
 import getNumFromStyle from '../util/getNumFromStyle';
 
 function LabelSlotContainer({label, swapLabels, containerIndex, containerType, labelSheetWidth}) {
@@ -39,7 +38,7 @@ function LabelSlotContainer({label, swapLabels, containerIndex, containerType, l
             containerType={containerType}
             label = {label}
             labelWidth={LabelContainerWidth?LabelContainerWidth:labelSheetWidth}
-            labelTextElement={colorCountToText(label.colors, label.counts)}/>
+            />
         </div>
     );
 }

@@ -5,7 +5,7 @@ import makeLabelWithTiles from '../util/MakeLabel';
 import { ItemTypes } from '../util/DraggableItemTypes';
 //import { LabelContainerTypes as LCT } from '../util/LabelContainerTypes';
 
-function LabelSlot({label, labelTextStyle, labelWidth, updateLabel, swapLabels, containerIndex, containerType}) {
+function LabelSlot({label, labelWidth, swapLabels, containerIndex, containerType}) {
 
     const [{ isDragging }, drag] = useDrag(
         () => ({
@@ -34,6 +34,7 @@ function LabelSlot({label, labelTextStyle, labelWidth, updateLabel, swapLabels, 
     const [{ isOver, canDrop }, drop] = useDrop({
         accept: ItemTypes.LABEL,
         drop: (item)=> {
+            //alert([item.containerIndex, item.containerType])
             return(swapLabels(item.containerIndex, item.containerType, containerIndex, containerType))
         },
         collect: (monitor) => ({
@@ -69,7 +70,7 @@ function LabelSlot({label, labelTextStyle, labelWidth, updateLabel, swapLabels, 
     // Do not know why ref is like this, but I found it in the doc examples
     // ref={(node)=>{drag(drop(node))}}
     return (
-    <div ref={(node)=>{drag(drop(node))}} style={labelSlotStyle}>
+    <div key={`${containerType}${containerIndex}`}ref={(node)=>{drag(drop(node))}} style={labelSlotStyle}>
         {finalLabel}
     </div>
     );

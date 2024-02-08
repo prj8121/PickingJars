@@ -7,6 +7,7 @@ function makeLabel(labelSpecs, labelWidth){
 }
 
 function makeLabelWithTiles(labelSpecs, labelWidth) {
+    if (labelSpecs.colors.length > 3) console.log(labelSpecs.colors.length)
     const isEmpty = labelSpecs.colors.length === 0;
     const radius = (0.6 * labelWidth) / (2 * (1 + labelSpecs.colors.length));
 
@@ -34,11 +35,37 @@ function makeLabelWithTiles(labelSpecs, labelWidth) {
         left: '50%',
         transform: 'translate(-50%, -50%)',
     }
+    if (isEmpty){
+        return (
+            <div style={containerStyle}>
+                <img style={imageStyle} src={isEmpty?emptyLabelPNG:labelPNG} alt={'label failed to load'} />
+            </div>
+        )
+    } else {
+        return (
+            <div style={containerStyle}>
+                <div style={tileRowStyle}>
+                    {isEmpty?<></>:tileSvgList.map((tile, i) => (
+                        <>{tile}</>
+                    ))}
+                </div>
+                <img style={imageStyle} src={isEmpty?emptyLabelPNG:labelPNG} alt={'label failed to load'} />   
+            </div>
+        )
+    }
+    /*
+{isEmpty?<></>:<div style={tileRowStyle}>
+                {tileSvgList.map((tile, _) => (
+                    <>{tile}</>
+                ))}
+            </div>}
+    */
+
 
     return(
         <div style={containerStyle}>
             <div style={tileRowStyle}>
-                {tileSvgList.map((tile, _) => (
+                {isEmpty?<></>:tileSvgList.map((tile, i) => (
                     <>{tile}</>
                 ))}
             </div>

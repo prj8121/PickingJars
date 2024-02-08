@@ -18,7 +18,7 @@ export const makeCircleSvgWithColor = (color, radius, centerText, isMostRecent) 
     }
 
     return (
-        <svg style={svgStyle} key={`tile${centerText}`} xmlns="http://www.w3.org/2000/svg" width={boxWidth} height={boxWidth} viewBox={`0 0 ${boxWidth} ${boxWidth}`}>
+        <svg style={svgStyle} /*key={`tile${centerText}`}*/ xmlns="http://www.w3.org/2000/svg" width={boxWidth} height={boxWidth} viewBox={`0 0 ${boxWidth} ${boxWidth}`}>
             <circle cx={circleCenterX} cy={circleCenterX} r={circleRadius} fill={color} />
             <text
                 //display={isMostRecent?'none':'inline'}

@@ -90,4 +90,15 @@ export const CIVjars511 = [
     },
 ];
 
-export const jarList = [jars1, rainbowJars, CIVjars211, CIVjars511];
+export const wideJars = [
+    {
+        colors: ['coral', 'indigo', 'violet', 'red', 'green', 'blue'],
+        counts: [1, 1, 1, 1, 1, 1],
+    },
+    {
+        colors: ['coral', 'indigo', 'violet', 'red', 'green', 'blue'],
+        counts: [1, 1, 1, 3, 1, 1],
+    },
+]
+
+export const jarList = [jars1, rainbowJars, CIVjars211, CIVjars511, wideJars];
