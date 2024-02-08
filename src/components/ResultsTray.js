@@ -19,17 +19,14 @@ function ResultsTray({contents, containerWidth, colorOrder}){
 
     useEffect(()=>{
         const latestColor = contents.length>0?contents[0]:null;
-        /* console.log(counterData)
-        console.log(`latestColor:${latestColor}`)
-        console.log(`contentss:${contents}`) */
+
         if (latestColor !== null){
-            //console.log("entered latestColor!==null")
             const index = counterData.colors.indexOf(latestColor);
+
             if (index === -1){
-                //const newColors = [...counterData.colors, latestColor];
                 const indexInOrder = colorOrder.indexOf(latestColor);
                 const highestPreexistingIndexInOrder = colorOrder.indexOf(counterData.colors[counterData.colors.length-1])
-                console.log(`${indexInOrder} > ${highestPreexistingIndexInOrder}`)
+
                 if (indexInOrder > highestPreexistingIndexInOrder){
                     const newColors = [...counterData.colors, latestColor];
                     const newCounts = [...counterData.counts, 1];
@@ -40,15 +37,14 @@ function ResultsTray({contents, containerWidth, colorOrder}){
                 } else {
                     let counter_i = counterData.colors.length-1;
                     let order_index = colorOrder.indexOf(counterData.colors[counter_i]);
+                    
                     while(order_index > indexInOrder){
                         counter_i -= 1;
                         order_index = colorOrder.indexOf(counterData.colors[counter_i]);
                     }
-                    console.log(`oldColors=${counterData.colors}`)
-                    console.log(`newColor=${latestColor}`)
-                    console.log(`index = ${counter_i}`)
-                    const newColors = counterData.colors.toSpliced(counter_i - 1, 0, latestColor);
-                    const newCounts = counterData.counts.toSpliced(counter_i - 1, 0, 1);
+
+                    const newColors = counterData.colors.toSpliced(counter_i + 1, 0, latestColor);
+                    const newCounts = counterData.counts.toSpliced(counter_i + 1, 0, 1);
                     setCounterData({
                         colors:newColors,
                         counts:newCounts,
