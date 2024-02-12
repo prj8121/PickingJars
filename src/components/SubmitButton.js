@@ -1,6 +1,6 @@
 import React from "react";
 
-function SubmitButton(handleSubmit){
+function SubmitButton({handleSubmit}){
 
     const buttonStyle = {
         display: 'block',

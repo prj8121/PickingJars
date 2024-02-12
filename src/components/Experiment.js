@@ -76,7 +76,6 @@ function Experiment({specs}){
     const labelSheetMaxWidth = `${100/(numJars+1)}vw`;
 
     function submitFunction({target}){
-        alert("Submitting");
         console.log(`Submitting: ${labelsInJars}`)
         return 0;
     }
