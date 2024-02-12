@@ -1,6 +1,6 @@
 import React from "react";
 
-function SubmitButton({handleSubmit, displayString}){
+function SubmitButton({handleSubmit, displayString, guessed}){
 
     const buttonStyle = {
         display: 'block',
@@ -20,7 +20,7 @@ function SubmitButton({handleSubmit, displayString}){
                 Submit
             </button>
             <div>
-                {disStr}
+                {guessed?disStr:"No Submissions yet"}
             </div>
         </div>
     )
