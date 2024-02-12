@@ -8,19 +8,24 @@ import { jarList } from '../jarSpecs/JarSpecifications';
 
 function Experiment({specs}){
     const jars = jarList[0];
-    
-    var shuffledJars = jars.slice(0);
-    shuffleArrayInPlace(shuffledJars);
-
     const numJars = jars.length;
     const emptyJars = [];
+
     for (let i = 0; i < numJars; i++){
         emptyJars.push({colors:[],counts:[]})
     }
     
+    const [shuffledJars, setShuffledJars] = useState([]);
     const [labelsInSheet, setLabelsInSheet] = useState(jars);
     const [labelsInJars, setLabelsInJars] = useState(emptyJars);
+    const [SubButDisplay, setSubButDisplay] = useState("Nothing submitted");
 
+    if (shuffledJars.length === 0) {
+        var tempShuffledJars = jars.slice(0);
+        shuffleArrayInPlace(tempShuffledJars);
+        setShuffledJars(tempShuffledJars);
+    }
+    
     function isSheetEmpty(labels){
         for (let i = 0; i < labels.length; i+=1){
             if (labels[i].colors && labels[i].colors.length !== 0){
@@ -76,7 +81,13 @@ function Experiment({specs}){
     const labelSheetMaxWidth = `${100/(numJars+1)}vw`;
 
     function submitFunction({target}){
-        console.log(`Submitting: ${labelsInJars}`)
+        //console.log(`Submitting:`, JSON.stringify(labelsInJars))
+        let matches = []
+        for(let i = 0; i < shuffledJars.length; i+=1){
+            if (shuffledJars[i] === labelsInJars[i])
+                matches.push(i);   
+        }
+        setSubButDisplay(matches);
         return 0;
     }
 
@@ -116,7 +127,7 @@ function Experiment({specs}){
             <div id={"InteractablesWrapper"} style={InteractablesWrapperStyle}>
 
                 <div style={labelSheetWrapperStyle}>
-                    {submitReady?<SubmitButton handleSubmit={submitFunction}/>:<LabelSheet /*maxWidth={labelSheetMaxWidth}*/ labels={labelsInSheet} swapLabels={swapLabels}/>}
+                    {submitReady?<SubmitButton handleSubmit={submitFunction} displayString={SubButDisplay}/>:<LabelSheet /*maxWidth={labelSheetMaxWidth}*/ labels={labelsInSheet} swapLabels={swapLabels}/>}
                 </div>
                 
                 <div style={JarRowWrapperStyle}>

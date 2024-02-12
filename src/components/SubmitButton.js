@@ -1,6 +1,6 @@
 import React from "react";
 
-function SubmitButton({handleSubmit}){
+function SubmitButton({handleSubmit, displayString}){
 
     const buttonStyle = {
         display: 'block',
@@ -9,16 +9,18 @@ function SubmitButton({handleSubmit}){
         //border: '2px solid green',
     }
 
+    const disStr = "" + displayString;
+
     return (
         <div>
             <button 
                 style={{height:20, ...buttonStyle}}
                 onClick={handleSubmit}
             >
-                This is the submit button
+                Submit
             </button>
             <div>
-                And this is the display block of the submit button
+                {disStr}
             </div>
         </div>
     )
