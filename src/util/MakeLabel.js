@@ -12,7 +12,7 @@ function makeLabelWithTiles(labelSpecs, labelWidth) {
 
     const tileSvgList = [
         labelSpecs.colors.map((color, i) => (
-            makeCircleSvgWithColor(color, radius, labelSpecs.counts[i] - 1, false)
+            makeCircleSvgWithColor(color, radius, labelSpecs.counts[i] - 1, false, `Tile${i}`)
         ))
     ];
 
@@ -44,14 +44,15 @@ function makeLabelWithTiles(labelSpecs, labelWidth) {
         return (
             <div style={containerStyle}>
                 <div style={tileRowStyle}>
-                    {isEmpty?<></>:tileSvgList.map((tile, i) => (
-                        <>{tile}</>
+                    {isEmpty?<div key={'EmptyTileContainer'}></div>:tileSvgList.map((tile, i) => (
+                        <div key={`TileContainer${i}`}>{tile}</div>
                     ))}
                 </div>
                 <img style={imageStyle} src={isEmpty?emptyLabelPNG:labelPNG} alt={'label failed to load'} />   
             </div>
         )
     }
+}
     /*
 {isEmpty?<></>:<div style={tileRowStyle}>
                 {tileSvgList.map((tile, _) => (
@@ -60,7 +61,7 @@ function makeLabelWithTiles(labelSpecs, labelWidth) {
             </div>}
     */
 
-
+/*
     return(
         <div style={containerStyle}>
             <div style={tileRowStyle}>
@@ -73,7 +74,7 @@ function makeLabelWithTiles(labelSpecs, labelWidth) {
         </div>
     )
 }
-
+*/
 /*
     const labelTextElement = <>
         

@@ -32,6 +32,7 @@ function LabelSheet({maxWidth, labels, swapLabels}){
         labels.map((label, i)=>{
             return(
                 <LabelSlotContainer
+                key={`LabelSlotContainer${i}`}
                 swapLabels={swapLabels}
                 containerIndex = {i}
                 containerType={LabelContainerTypes.SHEET}

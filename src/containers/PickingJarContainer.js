@@ -35,7 +35,7 @@ function PickingJarContainer({specifications, swapLabels, containerIndex, label}
     const total = specifications.counts.reduce((sum, a) => sum + a, 0);
 
     function handlePick({target}){
-        console.log(`total=${total}`);
+        //console.log(`total=${total}`);
         let indexChoice = getRndInteger(0, total);
         let colorIndex = 0;
         while (indexChoice > 0 && colorIndex < specifications.colors.length) {
@@ -60,7 +60,7 @@ function PickingJarContainer({specifications, swapLabels, containerIndex, label}
     }
 
     return (
-        <div style={JarStyle} ref={elementRef}>
+        <div id={`PickingJarWrapper${containerIndex}`} style={JarStyle} ref={elementRef}>
             <PickingJar 
                 //style={{ alignSelf: 'flex-start' }} 
                 specs={specifications} 
@@ -70,8 +70,8 @@ function PickingJarContainer({specifications, swapLabels, containerIndex, label}
                 containerIndex={containerIndex}
                 label={label}
             />
-            <div style={resultsTrayStyle}>
-                <ResultsTray contents={results} containerWidth={containerWidth} colorOrder={specifications.colors}/>
+            <div id={`ResultsTrayContainer${containerIndex}`} style={resultsTrayStyle}>
+                <ResultsTray contents={results} containerIndex={containerIndex} containerWidth={containerWidth} colorOrder={specifications.colors}/>
             </div>
         </div>
         

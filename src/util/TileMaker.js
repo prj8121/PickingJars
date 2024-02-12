@@ -1,4 +1,4 @@
-export const makeCircleSvgWithColor = (color, radius, centerText, isMostRecent) => {
+export const makeCircleSvgWithColor = (color, radius, centerText, isMostRecent, key) => {
     // Settings for tiles
     //const circleRadius = trayWidth? 0.1*trayWidth : 1;
     const circleRadius = radius;
@@ -18,7 +18,7 @@ export const makeCircleSvgWithColor = (color, radius, centerText, isMostRecent) 
     }
 
     return (
-        <svg style={svgStyle} /*key={`tile${centerText}`}*/ xmlns="http://www.w3.org/2000/svg" width={boxWidth} height={boxWidth} viewBox={`0 0 ${boxWidth} ${boxWidth}`}>
+        <svg key={key} style={svgStyle} /*key={`tile${centerText}`}*/ xmlns="http://www.w3.org/2000/svg" width={boxWidth} height={boxWidth} viewBox={`0 0 ${boxWidth} ${boxWidth}`}>
             <circle cx={circleCenterX} cy={circleCenterX} r={circleRadius} fill={color} />
             <text
                 //display={isMostRecent?'none':'inline'}

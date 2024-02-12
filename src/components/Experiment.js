@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import PickingJarContainer from '../containers/PickingJarContainer';
 import LabelSheet from '../containers/LabelSheet';
+import SubmitButton from './SubmitButton';
 import { LabelContainerTypes as LCT} from '../util/LabelContainerTypes';
 import shuffleArrayInPlace from '../util/Shuffler';
 import { jarList } from '../jarSpecs/JarSpecifications';
 
 function Experiment({specs}){
-    const jars = jarList[4];
+    const jars = jarList[0];
     
     var shuffledJars = jars.slice(0);
     shuffleArrayInPlace(shuffledJars);
@@ -19,6 +20,15 @@ function Experiment({specs}){
     
     const [labelsInSheet, setLabelsInSheet] = useState(jars);
     const [labelsInJars, setLabelsInJars] = useState(emptyJars);
+
+    function isSheetEmpty(labels){
+        for (let i = 0; i < labels.length; i+=1){
+            if (labels[i].colors && labels[i].colors.length !== 0){
+                return false;
+            } 
+        }
+        return true;
+    }
 
     /* 
       Functional but not especially readable unfortunately
@@ -62,7 +72,14 @@ function Experiment({specs}){
         }
     }
 
-    const labelSheetMaxWidth = `${100/(numJars+1)}%`
+    const submitReady = isSheetEmpty(labelsInSheet);
+    const labelSheetMaxWidth = `${100/(numJars+1)}%`;
+
+    function submitFunction({target}){
+        alert("Submitting");
+        console.log(`Submitting: ${labelsInJars}`)
+        return 0;
+    }
 
     const labelSheetWrapperStyle = {
         maxWidth: labelSheetMaxWidth,
@@ -84,28 +101,29 @@ function Experiment({specs}){
     }
 
     return (
-        <div>
-            <div style={{display:"flex", justifyContent:"space-evenly"}}>
-                <p style={InstructionsParagraphStyle}>
+        <div id="Experiment">
+            <div id="Instructions" style={{display:"flex", justifyContent:"space-evenly"}}>
+                <p key={"InstructionsP1"} style={InstructionsParagraphStyle}>
                     Here we have {numJars} jars of colored tiles and {numJars} matching labels for those jars.
                 </p>
-                <p style={InstructionsParagraphStyle}>
+                <p key={"InstructionsP2"} style={InstructionsParagraphStyle}>
                     After you pick a tile from a jar it is placed back into the jar to maintain the color ratios.
                 </p>
-                <p style={InstructionsParagraphStyle}>
+                <p key={"InstructionsP3"} style={InstructionsParagraphStyle}>
                     Drag and drop the labels onto the matching jars.
                 </p>
             </div>
-            
-            <div style={InteractablesWrapperStyle}>
 
-                <div style={labelSheetWrapperStyle}>                   
-                    <LabelSheet maxWith={labelSheetMaxWidth} labels={labelsInSheet} swapLabels={swapLabels}/>
+            <div id={"InteractablesWrapper"} style={InteractablesWrapperStyle}>
+
+                <div style={labelSheetWrapperStyle}>
+                    {submitReady?<SubmitButton handleSubmit={submitFunction}/>:<LabelSheet maxWith={labelSheetMaxWidth} labels={labelsInSheet} swapLabels={swapLabels}/>}
                 </div>
                 
                 <div style={JarRowWrapperStyle}>
                     {Array.from({ length: numJars }, (_, index) => (
                                 <PickingJarContainer 
+                                    key={`PickingJarContainer${index}`}
                                     containerIndex={index}
                                     specifications={shuffledJars[index]}
                                     swapLabels={swapLabels}

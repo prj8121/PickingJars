@@ -70,7 +70,7 @@ function LabelSlot({label, labelWidth, swapLabels, containerIndex, containerType
     // Do not know why ref is like this, but I found it in the doc examples
     // ref={(node)=>{drag(drop(node))}}
     return (
-    <div key={`${containerType}${containerIndex}`}ref={(node)=>{drag(drop(node))}} style={labelSlotStyle}>
+    <div key={`${containerType}${containerIndex}`} ref={(node)=>{drag(drop(node))}} style={labelSlotStyle}>
         {finalLabel}
     </div>
     );

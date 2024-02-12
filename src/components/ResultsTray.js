@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Counter from './Counter';
 import { makeCircleSvgWithColor } from '../util/TileMaker';
 
-function ResultsTray({contents, containerWidth, colorOrder}){
+function ResultsTray({contents, containerIndex, containerWidth, colorOrder}){
 
     //const [trayWidth, setTrayWidth] = useState(null);
     //const elementRef = useRef(null);
@@ -85,10 +85,16 @@ function ResultsTray({contents, containerWidth, colorOrder}){
         //border: 'dotted red 2px',
     }
 
+    const resultsTrayStyle = {
+        display:'flex',
+        flexDirection:'column',
+        maxWidth:containerWidth?`${containerWidth}px`:'none',
+    }
+
     /* console.log(svgRowStyle.maxWidth); */
 
     return (
-        <div style={{display:'flex', flexDirection:'column', /*textAlign:'center',*/ /*alignItems:'center',*/ maxWidth:containerWidth?`${containerWidth}px`:'none'}}>
+        <div id={`ResultsTray${containerIndex}`} style={resultsTrayStyle}>
             <div style={{display:'flex'}}>
                 <div style={{alignSelf:'start', flex:1, opacity:0}}><Counter info={counterData}/></div>
                 
@@ -103,7 +109,9 @@ function ResultsTray({contents, containerWidth, colorOrder}){
 
             <div style={rowContainerStyle}>
                 <div id='svg-row' style={svgRowStyle}>
-                    {contents.slice(1).toReversed().map((color, i) => makeCircleSvgWithColor(color, circleRadius, i, false/*i===contents.length-21*/))}
+                    {
+                    contents.slice(1).toReversed().map((color, i) => (makeCircleSvgWithColor(color, circleRadius, i, false, `Tile${i}`)))
+                    }
                 </div>
             </div>
 
