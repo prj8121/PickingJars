@@ -3,7 +3,7 @@ import PickingJar from '../components/PickingJar';
 import ResultsTray from '../components/ResultsTray';
 import getNumFromStyle from '../util/getNumFromStyle';
 
-function PickingJarContainer({specifications, swapLabels, containerIndex, label}){
+function PickingJarContainer({specifications, swapLabels, containerIndex, label, guessed, correctlyGuessed}){
 
     const [results, setResults] = useState([]);
     const [containerWidth, setContainerWidth] = useState(null);
@@ -56,7 +56,7 @@ function PickingJarContainer({specifications, swapLabels, containerIndex, label}
     }
     const JarStyle = {
         flex:1,
-        //border:'dashed lightgreen 2px',
+        //border:correctlyGuessed?'dashed lightgreen 2px':'',
     }
 
     return (
@@ -69,6 +69,8 @@ function PickingJarContainer({specifications, swapLabels, containerIndex, label}
                 swapLabels={swapLabels}
                 containerIndex={containerIndex}
                 label={label}
+                guessed={guessed}
+                correctlyGuessed={correctlyGuessed}
             />
             <div id={`ResultsTrayContainer${containerIndex}`} style={resultsTrayStyle}>
                 <ResultsTray contents={results} containerIndex={containerIndex} containerWidth={containerWidth} colorOrder={specifications.colors}/>

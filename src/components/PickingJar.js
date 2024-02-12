@@ -5,7 +5,7 @@ import basicJar from '../images/PickingJarGoogleDrawing.png';
 //import colorCountToText from '../util/colorCountToText';
 import { LabelContainerTypes } from '../util/LabelContainerTypes';
 
-function PickingJar({specs, onPick, containerWidth, swapLabels, containerIndex, label}){
+function PickingJar({specs, onPick, containerWidth, swapLabels, containerIndex, label, guessed, correctlyGuessed}){
 
     //const [label, setLabel] = useState({colors:[], counts:[]})
 
@@ -24,6 +24,7 @@ function PickingJar({specs, onPick, containerWidth, swapLabels, containerIndex, 
         position:'relative',
         //backgroundColor:'coral',
         //border: '2px solid blue',
+        border:guessed?correctlyGuessed?'solid lightgreen 5px':'solid red 5px':'',
         display: 'inline-block',
         textAlign: 'center',
     }

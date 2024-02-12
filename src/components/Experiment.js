@@ -18,7 +18,8 @@ function Experiment({specs}){
     const [shuffledJars, setShuffledJars] = useState([]);
     const [labelsInSheet, setLabelsInSheet] = useState(jars);
     const [labelsInJars, setLabelsInJars] = useState(emptyJars);
-    const [SubButDisplay, setSubButDisplay] = useState("Nothing submitted");
+    const [matches, setMatches] = useState([]);
+    const [guessed, setGuessed] = useState(false);
 
     if (shuffledJars.length === 0) {
         var tempShuffledJars = jars.slice(0);
@@ -82,12 +83,14 @@ function Experiment({specs}){
 
     function submitFunction({target}){
         //console.log(`Submitting:`, JSON.stringify(labelsInJars))
-        let matches = []
+        let foundMatches = []
         for(let i = 0; i < shuffledJars.length; i+=1){
             if (shuffledJars[i] === labelsInJars[i])
-                matches.push(i);   
+                foundMatches.push(i);   
         }
-        setSubButDisplay(matches);
+
+        setMatches(foundMatches);
+        setGuessed(true);
         return 0;
     }
 
@@ -127,7 +130,7 @@ function Experiment({specs}){
             <div id={"InteractablesWrapper"} style={InteractablesWrapperStyle}>
 
                 <div style={labelSheetWrapperStyle}>
-                    {submitReady?<SubmitButton handleSubmit={submitFunction} displayString={SubButDisplay}/>:<LabelSheet /*maxWidth={labelSheetMaxWidth}*/ labels={labelsInSheet} swapLabels={swapLabels}/>}
+                    {submitReady?<SubmitButton handleSubmit={submitFunction} displayString={JSON.stringify(matches)}/>:<LabelSheet /*maxWidth={labelSheetMaxWidth}*/ labels={labelsInSheet} swapLabels={swapLabels}/>}
                 </div>
                 
                 <div style={JarRowWrapperStyle}>
@@ -138,6 +141,8 @@ function Experiment({specs}){
                                     specifications={shuffledJars[index]}
                                     swapLabels={swapLabels}
                                     label = {labelsInJars[index]}
+                                    guessed={guessed}
+                                    correctlyGuessed = {matches.includes(index)}
                                 />
                             ))}
                 </div>
