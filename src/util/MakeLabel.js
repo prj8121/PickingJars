@@ -8,7 +8,7 @@ function makeLabel(labelSpecs, labelWidth){
 
 function makeLabelWithTiles(labelSpecs, labelWidth) {
     const isEmpty = labelSpecs.colors.length === 0;
-    const radius = (0.6 * labelWidth) / (2 * (1 + labelSpecs.colors.length));
+    const radius = (0.5 * labelWidth) / (2 * (1 + labelSpecs.colors.length));
 
     const tileSvgList = [
         labelSpecs.colors.map((color, i) => (

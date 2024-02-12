@@ -5,9 +5,10 @@ import SubmitButton from './SubmitButton';
 import { LabelContainerTypes as LCT} from '../util/LabelContainerTypes';
 import shuffleArrayInPlace from '../util/Shuffler';
 import { jarList } from '../jarSpecs/JarSpecifications';
+import { stairCaseJars } from '../jarSpecs/JarSpecifications';
 
 function Experiment({specs}){
-    const jars = jarList[0];
+    const jars = stairCaseJars;//jarList[3];
     const numJars = jars.length;
     const emptyJars = [];
 

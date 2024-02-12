@@ -101,4 +101,31 @@ export const wideJars = [
     },
 ]
 
-export const jarList = [jars1, rainbowJars, CIVjars211, CIVjars511, wideJars];
+export const stairCaseJars = [
+    {
+        colors: ['coral', 'indigo', 'violet', 'red', 'green', 'blue'],
+        counts: [1, 1, 1, 1, 1, 1],
+    },
+    {
+        colors: ['coral', 'indigo', 'violet', 'red', 'green'],
+        counts: [1, 1, 1, 1, 1],
+    },
+    {
+        colors: ['coral', 'indigo', 'violet', 'red'],
+        counts: [1, 1, 1, 1],
+    },
+    {
+        colors: ['coral', 'indigo', 'violet'],
+        counts: [1, 1, 1],
+    },
+    {
+        colors: ['coral', 'indigo'],
+        counts: [1, 1],
+    },
+    {
+        colors: ['coral'],
+        counts: [1],
+    },
+]
+
+export const jarList = [jars1, rainbowJars, CIVjars211, CIVjars511, wideJars, stairCaseJars];
