@@ -73,7 +73,7 @@ function Experiment({specs}){
     }
 
     const submitReady = isSheetEmpty(labelsInSheet);
-    const labelSheetMaxWidth = `${100/(numJars+1)}%`;
+    const labelSheetMaxWidth = `${100/(numJars+1)}vw`;
 
     function submitFunction({target}){
         alert("Submitting");
@@ -117,7 +117,7 @@ function Experiment({specs}){
             <div id={"InteractablesWrapper"} style={InteractablesWrapperStyle}>
 
                 <div style={labelSheetWrapperStyle}>
-                    {submitReady?<SubmitButton handleSubmit={submitFunction}/>:<LabelSheet maxWith={labelSheetMaxWidth} labels={labelsInSheet} swapLabels={swapLabels}/>}
+                    {submitReady?<SubmitButton handleSubmit={submitFunction}/>:<LabelSheet /*maxWidth={labelSheetMaxWidth}*/ labels={labelsInSheet} swapLabels={swapLabels}/>}
                 </div>
                 
                 <div style={JarRowWrapperStyle}>

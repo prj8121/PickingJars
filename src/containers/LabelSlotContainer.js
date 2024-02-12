@@ -37,7 +37,7 @@ function LabelSlotContainer({label, swapLabels, containerIndex, containerType, l
             containerIndex = {containerIndex}
             containerType={containerType}
             label = {label}
-            labelWidth={LabelContainerWidth?LabelContainerWidth:labelSheetWidth}
+            labelWidth={LabelContainerWidth}
             />
         </div>
     );
